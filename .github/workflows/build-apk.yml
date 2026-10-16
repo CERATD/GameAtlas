@@ -16,7 +16,8 @@ jobs:
       - name: Generate Flutter Android project
         run: |
           flutter create --platforms=android --project-name gameatlas .
-          flutter pub add shared_preferences
+          flutter pub add webview_flutter
+          sed -i 's/<application/<uses-permission android:name="android.permission.INTERNET"\/><application/' android/app/src/main/AndroidManifest.xml
       - name: Build APK
         run: flutter build apk --release
       - uses: actions/upload-artifact@v4
